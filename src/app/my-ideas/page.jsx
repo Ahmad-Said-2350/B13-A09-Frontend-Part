@@ -3,7 +3,7 @@ import React from 'react';
 const page = () => {
     return (
         <div>
-            <h1>this is the ideas page</h1>
+            <h1>this is the my ideas page</h1>
         </div>
     );
 };
