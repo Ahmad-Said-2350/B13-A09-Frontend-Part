@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import { useTheme } from "@/app/context/ThemeContext";
+import { useTheme } from "./providers/ThemeProvider";
+
 
 const Navbar = () => {
 const { data: session } = authClient.useSession(); 
 const router = useRouter();
 const pathname = usePathname();
-const { theme, toggleTheme } = useTheme(); 
+const { theme, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -76,13 +77,13 @@ const { theme, toggleTheme } = useTheme();
           </div>
 
          
-          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-white dark:bg-slate-900 rounded-xl z-50 mt-3 p-2 shadow-xl border border-slate-200 dark:border-slate-800">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-white dark:bg-slate-900 rounded-xl z-50 mt-3  shadow-xl border w-fit border-slate-400 dark:border-slate-800">
             <li><Link href="/" className={isActive("/")}> Home</Link></li>
             <li><Link href="/ideas" className={isActive("/ideas")}>Ideas</Link></li>
 
             {session && (
               <>
-                <div className="divider my-1 text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-600">Private Dashboard</div>
+                <div className="divider my-1 text-[10px] uppercase tracking-wider text-slate-400 dark:text-slate-600">Private</div>
                 <li><Link href="/add-idea" className={isActive("/add-idea")}>Add Idea</Link></li>
                 <li><Link href="/my-ideas" className={isActive("/my-ideas")}> My Ideas</Link></li>
                 <li><Link href="/my-interactions" className={isActive("/my-interactions")}>My Interactions</Link></li>

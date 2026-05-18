@@ -1,7 +1,10 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({
+  theme: "light",
+  toggleTheme: () => {},
+});
 
 export function useTheme() {
   return useContext(ThemeContext);
@@ -9,35 +12,30 @@ export function useTheme() {
 
 export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
     const saved = localStorage.getItem("ideavault-theme") || "light";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(saved);
     applyTheme(saved);
   }, []);
 
   function applyTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-   
+    document.documentElement.setAttribute("data-theme", t);
+    if (t === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    }
   }
 
-function toggleTheme() {
+  function toggleTheme() {
     const next = theme === "light" ? "dark" : "light";
-    console.log(next)
     setTheme(next);
     applyTheme(next);
     localStorage.setItem("ideavault-theme", next);
-  }
-
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <div className="invisible">{children}</div>
-      </ThemeContext.Provider>
-    );
   }
 
   return (
