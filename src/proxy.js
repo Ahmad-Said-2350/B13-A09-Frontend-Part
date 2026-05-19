@@ -15,5 +15,5 @@ export async function proxy(request) {
 }
  
 export const config = {
-  matcher: ['/my-ideas', '/add-idea','/my-interactions'],
+  matcher: ['/my-ideas', '/add-idea','/my-interactions','/ideas/:path'],
 }

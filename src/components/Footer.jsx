@@ -88,7 +88,7 @@ const Footer = () => {
             </h3>
             <div className="flex flex-wrap gap-3">
 
-              {/* GitHub */}
+            
               <a href="https://github.com" target="_blank" rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-violet-100 dark:hover:bg-violet-950/40 hover:text-violet-600 dark:hover:text-violet-400 transition-all"
                 aria-label="GitHub"

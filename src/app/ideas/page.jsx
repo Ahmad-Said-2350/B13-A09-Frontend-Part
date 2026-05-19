@@ -232,8 +232,8 @@ const ideasPage = () => {
         ) : ideas.length === 0 ? (
           
 
-          <div className="text-center py-24">
-            <p className="text-5xl mb-4">💡</p>
+          <div className="text-center py-24 ">
+            <p className="text-5xl mb-4"></p>
             <p className="text-slate-500 dark:text-slate-400 text-sm mb-5">
               No ideas found. Be the first to share!
             </p>

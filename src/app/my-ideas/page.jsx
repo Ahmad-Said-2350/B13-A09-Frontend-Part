@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { VscComment } from "react-icons/vsc";
 
+
 const categories = [
   "Tech", "Health", "AI", "Education",
   "Fintech", "Social", "Agri-Tech", "Other"
@@ -143,11 +144,11 @@ const MyIdepage = () => {
             ))}
           </div>
         ) : ideas.length === 0 ? (
-          <div className="text-center py-24">
-            <p className="text-5xl mb-4">💡</p>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
+          <div className="text-center py-24 shadow-sm rounded-xl">
+            <p className="text-5xl mb-4"></p>
+            <h2 className="text-slate-500 dark:text-slate-400 text-2xl font-semibold">
               You have not posted any ideas yet.
-            </p>
+            </h2>
           </div>
         ) : (
 
@@ -318,7 +319,7 @@ const MyIdepage = () => {
       {deleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-sm p-6 border border-slate-200 dark:border-slate-700 text-center">
-            <p className="text-4xl mb-4">🗑️</p>
+            <p className="text-4xl mb-4"> </p>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
               Delete Idea?
             </h2>

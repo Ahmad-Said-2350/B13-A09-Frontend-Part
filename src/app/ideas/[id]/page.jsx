@@ -8,6 +8,8 @@ import { authClient } from "@/lib/auth-client";
 
 
 import React from 'react';
+import { FaRegEdit } from "react-icons/fa";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const IdeaDetailsPage = () => {
     const { id } = useParams();
@@ -309,13 +311,13 @@ const IdeaDetailsPage = () => {
       }}
       className="flex items-center gap-1 text-xs px-3 py-1 rounded-lg border border-violet-200 dark:border-violet-800 text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/40 transition-colors font-medium"
     >
-      ✏️ Edit
+      <FaRegEdit /> Edit
     </button>
     <button
       onClick={() => handleDeleteComment(comment._id)}
       className="flex items-center gap-1 text-xs px-3 py-1 rounded-lg border border-red-200 dark:border-red-900 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors font-medium"
     >
-      🗑 Delete
+      <AiOutlineDelete /> Delete
     </button>
   </div>
                     )}

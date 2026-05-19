@@ -58,11 +58,11 @@ const MyInteractionsPage = () => {
             ))}
           </div>
         ) : interactions.length === 0 ? (
-          <div className="text-center py-24">
-            <p className="text-5xl mb-4">💬</p>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
+          <div className="text-center py-24 shadow-sm rounded-xl">
+            <p className="text-5xl mb-4"></p>
+            <h2 className="text-slate-500 dark:text-slate-400 text-2xl font-semibold">
               You have not commented on any ideas yet.
-            </p>
+            </h2>
           </div>
         ) : (
           <div className="space-y-4">
@@ -77,7 +77,7 @@ const MyInteractionsPage = () => {
                     href={`/ideas/${idea._id}`}
                     className="text-sm font-bold text-slate-900 dark:text-white hover:text-violet-600 dark:hover:text-violet-400 transition-colors line-clamp-1"
                   >
-                    💡 {idea.title}
+                     {idea.title}
                   </Link>
                 ) : (
                   <p className="text-sm font-bold text-slate-400 italic">
