@@ -106,11 +106,11 @@ const ProfilePage = () => {
               )}
             </div>
 
-            {/* ===== VIEW MODE ===== */}
+            
             {!editing && (
               <div className="space-y-5">
 
-                {/* Name */}
+               
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {user.name}
@@ -122,7 +122,7 @@ const ProfilePage = () => {
 
                 <div className="h-px bg-slate-100 dark:bg-slate-800" />
 
-                {/* Info Grid */}
+               
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
@@ -152,7 +152,7 @@ const ProfilePage = () => {
 
                 <div className="h-px bg-slate-100 dark:bg-slate-800" />
 
-                {/* Account Info */}
+               
                 <div className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-950/30 text-green-600 dark:text-green-400 text-xs font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
@@ -160,14 +160,14 @@ const ProfilePage = () => {
                   </span>
                   {user.emailVerified && (
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 text-xs font-medium">
-                      ✓ Email Verified
+                       Email Verified
                     </span>
                   )}
                 </div>
               </div>
             )}
 
-            {/* ===== EDIT MODE ===== */}
+           
             {editing && (
               <form onSubmit={handleUpdate} className="space-y-5">
 
@@ -199,7 +199,7 @@ const ProfilePage = () => {
                   />
                 </div>
 
-                {/* Image URL */}
+               
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Profile Image URL
@@ -213,7 +213,7 @@ const ProfilePage = () => {
                   />
                 </div>
 
-                {/* Email — readonly */}
+               
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                     Email Address

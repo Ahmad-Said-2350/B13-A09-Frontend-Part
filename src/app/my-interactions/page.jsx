@@ -21,8 +21,8 @@ const MyInteractionsPage = () => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/comments/user/all?email=${session?.user?.email}`
       );
-      const data = await res.json();
-      setInteractions(data);
+const data = await res.json();
+setInteractions(Array.isArray(data) ? data : []);
     } catch {
       setInteractions([]);
     } finally {

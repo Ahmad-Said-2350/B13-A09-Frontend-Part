@@ -6,6 +6,7 @@ import { authClient } from "@/lib/auth-client";
 import { VscComment } from "react-icons/vsc";
 
 
+
 const categories = [
   "Tech", "Health", "AI", "Education",
   "Fintech", "Social", "Agri-Tech", "Other"
@@ -33,15 +34,24 @@ const MyIdepage = () => {
   const [editForm, setEditForm] = useState({});
   const [updating, setUpdating] = useState(false);
 
+
   
   const fetchMyIdeas = async () => {
+  const {data} = await authClient.token()
+console.log(data)
+
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/ideas/my-ideas?email=${session?.user?.email}`
+        `${process.env.NEXT_PUBLIC_API_URL}/ideas/my-ideas?email=${session?.user?.email}`,{
+          headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
+        }
       );
       const data = await res.json();
-      setIdeas(data);
+     setIdeas(Array.isArray(data) ? data : []);
     } catch {
       setIdeas([]);
     } finally {
