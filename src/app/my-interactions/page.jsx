@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { error } from "better-auth/api";
 
 const MyInteractionsPage = () => {
     const { data: session } = authClient.useSession();
   const [interactions, setInteractions] = useState([]);
   const [loading, setLoading] = useState(true);
+console.log(session)
 
   useEffect(() => {
     if (session?.user?.email) {
@@ -16,14 +18,23 @@ const MyInteractionsPage = () => {
   }, [session]);
 
   const fetchInteractions = async () => {
+     const {data:{token}} = await authClient.token()
+    //  console.log(data)
     setLoading(true);
     try {
+      
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/comments/user/all?email=${session?.user?.email}`
+        `${process.env.NEXT_PUBLIC_API_URL}/comments/user/all?email=${session?.user?.email}`,{
+           headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${token}`
+        },
+        }
       );
 const data = await res.json();
 setInteractions(Array.isArray(data) ? data : []);
-    } catch {
+    } catch(error){ 
+      console.log(error)
       setInteractions([]);
     } finally {
       setLoading(false);

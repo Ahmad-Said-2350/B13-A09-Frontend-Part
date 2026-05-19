@@ -24,16 +24,32 @@ const IdeaDetailsPage = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const fetchIdea = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`);
-    const data = await res.json();
-    setIdea(data);
+     const {data} = await authClient.token()
+     console.log(data)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas/${id}`,{
+       headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
+    });
+    const data1 = await res.json();
+    setIdea(data1);
     setLoading(false);
   };
 
   const fetchComments = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments/${id}`);
-    const data = await res.json();
-    setComments(data);
+     const {data} = await authClient.token()
+console.log(data)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments/${id}`,{
+       headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        }
+    }
+
+    );
+    const data5 = await res.json();
+    setComments(data5);
   };
 
   useEffect(() => {
@@ -54,15 +70,20 @@ const IdeaDetailsPage = () => {
       userName: session?.user?.name,
       userImage: session?.user?.image || "",
     };
-
+     
+     const {data} = await authClient.token()
+console.log(data)
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
       body: JSON.stringify(comment),
     });
 
-    const data = await res.json();
-    if (data.insertedId) {
+    const data4 = await res.json();
+    if (data4.insertedId) {
       toast.success("Comment added!");
       setCommentText("");
       fetchComments();
@@ -72,18 +93,24 @@ const IdeaDetailsPage = () => {
 
   const handleEditComment = async (commentId) => {
     if (!editText.trim()) return;
+    
 
+     const {data} = await authClient.token()
+     console.log(data)
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/comments/${commentId}`,
       {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+         headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
         body: JSON.stringify({ text: editText }),
       }
     );
 
-    const data = await res.json();
-    if (data.modifiedCount > 0) {
+    const data2 = await res.json();
+    if (data2.modifiedCount > 0) {
       toast.success("Comment updated!");
       setEditingId(null);
       setEditText("");
@@ -92,13 +119,20 @@ const IdeaDetailsPage = () => {
   };
 
   const handleDeleteComment = async (commentId) => {
+     const {data} = await authClient.token()
+console.log(data)
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/comments/${commentId}`,
-      { method: "DELETE" }
+      { method: "DELETE",
+         headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
+      }
     );
 
-    const data = await res.json();
-    if (data.deletedCount > 0) {
+    const data3 = await res.json();
+    if (data3.deletedCount > 0) {
       toast.success("Comment deleted!");
       fetchComments();
     }

@@ -38,7 +38,7 @@ const MyIdepage = () => {
   
   const fetchMyIdeas = async () => {
   const {data} = await authClient.token()
-console.log(data)
+   console.log(data)
 
     setLoading(true);
     try {
@@ -50,8 +50,8 @@ console.log(data)
         },
         }
       );
-      const data = await res.json();
-     setIdeas(Array.isArray(data) ? data : []);
+      const dataa = await res.json();
+     setIdeas(Array.isArray(dataa) ? dataa : []);
     } catch {
       setIdeas([]);
     } finally {
@@ -94,18 +94,25 @@ console.log(data)
         ? editForm.tags.split(",").map((t) => t.trim()).filter(Boolean)
         : [],
     };
+    
 
+
+     const {data} = await authClient.token()
+     console.log(data)
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/ideas/${selectedIdea._id}`,
       {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+       headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
         body: JSON.stringify(updatedData),
       }
     );
 
-    const data = await res.json();
-    if (data.modifiedCount > 0) {
+    const data7 = await res.json();
+    if (data7.modifiedCount > 0) {
       toast.success("Idea updated successfully!");
       setEditModal(false);
       fetchMyIdeas();
@@ -116,13 +123,21 @@ console.log(data)
   };
 
   const handleDelete = async () => {
+
+     const {data} = await authClient.token()
+console.log(data)
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/ideas/${selectedIdea._id}`,
-      { method: "DELETE" }
+      { method: "DELETE",
+         headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${data?.token}`
+        },
+       }
     );
 
-    const data = await res.json();
-    if (data.deletedCount > 0) {
+    const data8 = await res.json();
+    if (data8.deletedCount > 0) {
       toast.success("Idea deleted!");
       setDeleteModal(false);
       fetchMyIdeas();

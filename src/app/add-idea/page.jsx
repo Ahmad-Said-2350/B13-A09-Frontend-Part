@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -10,10 +9,8 @@ const categories = [
   "Fintech", "Social", "Agri-Tech", "Other"
 ];
 
-
-
-const AddIseaspage = () => {
- const router = useRouter();
+const AddIdeaPage = () => {
+  const router = useRouter();
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
 
@@ -24,27 +21,33 @@ const AddIseaspage = () => {
     const formData = new FormData(e.currentTarget);
     const idea = Object.fromEntries(formData.entries());
 
-   
     idea.tags = idea.tags
       ? idea.tags.split(",").map((t) => t.trim()).filter(Boolean)
       : [];
 
-    
     idea.postedBy = session?.user?.email;
     idea.userName = session?.user?.name;
     idea.userImage = session?.user?.image || "";
     idea.commentCount = 0;
 
     try {
+      
+      const { data: tokenData } = await authClient.token();
+        console.log("token:", tokenData?.token) 
+
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/ideas`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
         body: JSON.stringify(idea),
       });
 
-      const data = await res.json();
+     
+      const result = await res.json();
 
-      if (data.insertedId) {
+      if (result.insertedId) {
         toast.success("Idea posted successfully!");
         router.push("/ideas");
       } else {
@@ -61,7 +64,6 @@ const AddIseaspage = () => {
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 md:px-6">
       <div className="max-w-2xl mx-auto">
 
-        
         <div className="mb-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-violet-500 dark:text-violet-400 mb-2">
             Share with the world
@@ -74,60 +76,44 @@ const AddIseaspage = () => {
           </p>
         </div>
 
-       
         <form onSubmit={handleSubmit} className="space-y-5">
 
-         
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Idea Title <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              name="title"
-              required
+            <input type="text" name="title" required
               placeholder="e.g. AI-powered resume builder"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
             />
           </div>
 
-         
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Short Description <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              name="shortDescription"
-              required
+            <input type="text" name="shortDescription" required
               placeholder="One-line summary of your idea"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
             />
           </div>
 
-         
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Detailed Description <span className="text-red-500">*</span>
             </label>
-            <textarea
-              name="detailedDescription"
-              required
-              rows={4}
+            <textarea name="detailedDescription" required rows={4}
               placeholder="Explain your idea in detail..."
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm resize-none"
             />
           </div>
 
-         
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 Category <span className="text-red-500">*</span>
               </label>
-              <select
-                name="category"
-                required
+              <select name="category" required
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
               >
                 <option value="">Select category</option>
@@ -136,96 +122,69 @@ const AddIseaspage = () => {
                 ))}
               </select>
             </div>
-
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                Tags{" "}
-                <span className="text-slate-400 font-normal">(optional)</span>
+                Tags <span className="text-slate-400 font-normal">(optional)</span>
               </label>
-              <input
-                type="text"
-                name="tags"
+              <input type="text" name="tags"
                 placeholder="AI, SaaS, Mobile (comma separated)"
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
               />
             </div>
           </div>
 
-         
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 Image URL <span className="text-red-500">*</span>
               </label>
-              <input
-                type="url"
-                name="imageURL"
-                required
+              <input type="url" name="imageURL" required
                 placeholder="https://example.com/image.jpg"
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
               />
             </div>
-
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
-                Estimated Budget{" "}
-                <span className="text-slate-400 font-normal">(optional)</span>
+                Estimated Budget <span className="text-slate-400 font-normal">(optional)</span>
               </label>
-              <input
-                type="text"
-                name="estimatedBudget"
+              <input type="text" name="estimatedBudget"
                 placeholder="e.g. $5,000"
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
               />
             </div>
           </div>
 
-         
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Target Audience <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
-              name="targetAudience"
-              required
+            <input type="text" name="targetAudience" required
               placeholder="e.g. Small business owners, Students"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
             />
           </div>
 
-         
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Problem Statement <span className="text-red-500">*</span>
             </label>
-            <textarea
-              name="problemStatement"
-              required
-              rows={3}
+            <textarea name="problemStatement" required rows={3}
               placeholder="What problem does your idea solve?"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm resize-none"
             />
           </div>
 
-          
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Proposed Solution <span className="text-red-500">*</span>
             </label>
-            <textarea
-              name="proposedSolution"
-              required
-              rows={3}
+            <textarea name="proposedSolution" required rows={3}
               placeholder="How does your idea solve the problem?"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm resize-none"
             />
           </div>
 
-         
-          <button
-            type="submit"
-            disabled={loading}
+          <button type="submit" disabled={loading}
             className="w-full py-3.5 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white font-semibold rounded-xl transition-all text-sm shadow-lg"
           >
             {loading ? "Posting..." : "Post Idea →"}
@@ -237,5 +196,4 @@ const AddIseaspage = () => {
   );
 };
 
-export default AddIseaspage;
-
+export default AddIdeaPage;
