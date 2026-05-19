@@ -301,23 +301,23 @@ const IdeaDetailsPage = () => {
                     )}
 
                     {session?.user?.email === comment.userEmail && editingId !== comment._id && (
-                      <div className="flex gap-3 mt-1.5">
-                        <button
-                          onClick={() => {
-                            setEditingId(comment._id);
-                            setEditText(comment.text);
-                          }}
-                          className="text-xs text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDeleteComment(comment._id)}
-                          className="text-xs text-slate-400 hover:text-red-500 transition-colors"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                     <div className="flex gap-2 mt-2">
+    <button
+      onClick={() => {
+        setEditingId(comment._id);
+        setEditText(comment.text);
+      }}
+      className="flex items-center gap-1 text-xs px-3 py-1 rounded-lg border border-violet-200 dark:border-violet-800 text-violet-600 dark:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-950/40 transition-colors font-medium"
+    >
+      ✏️ Edit
+    </button>
+    <button
+      onClick={() => handleDeleteComment(comment._id)}
+      className="flex items-center gap-1 text-xs px-3 py-1 rounded-lg border border-red-200 dark:border-red-900 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors font-medium"
+    >
+      🗑 Delete
+    </button>
+  </div>
                     )}
                   </div>
                 </div>
