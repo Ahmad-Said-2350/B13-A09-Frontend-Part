@@ -33,6 +33,7 @@ const LoginPage = () => {
     await signIn.social({ provider: "google", callbackURL: "/" });
   };
 
+  
   return (
     <div className="min-h-[90vh] flex items-center justify-center bg-slate-50 dark:bg-[#0F172A] px-4 transition-colors duration-300">
       <div className="card w-full max-w-md bg-white dark:bg-slate-900 shadow-xl p-8 border border-slate-100 dark:border-slate-800 rounded-2xl">
