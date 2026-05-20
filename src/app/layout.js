@@ -9,8 +9,8 @@ import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 
-const interFont = Geist({
-  variable: "--font-geist-sans",
+const interFont = Inter({
+  
   subsets: ["latin"],
 });
 
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${interFont.className}  h-full antialiased`}
+      className={`${interFont.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
       
