@@ -10,7 +10,7 @@ Built for clarity — real ideas, honest feedback, zero noise.
 
 IdeaVault connects idea makers with a community of builders, investors, and thinkers. Post your startup concept with a problem statement and proposed solution, then let the community validate it through comments and discussions. Browse trending ideas, filter by category, and discover what the world is building next.
 
-**Live Site:** [https://b13-a09-frontend-part.vercel.app/](https://ideavault-client.vercel.app)
+**Live Site:** [https://b13-a09-frontend-part.vercel.app/]
 
 ---
 
@@ -109,7 +109,7 @@ react-icons
 
 ---
 
-**Server Repo:** [https://github.com/Ahmad-Said-2350/B13-A09-Back-end-Part](https://github.com/your-username/ideavault-server)
+**Server Repo:** [https://github.com/Ahmad-Said-2350/B13-A09-Back-end-Part]
 
 ---
 
