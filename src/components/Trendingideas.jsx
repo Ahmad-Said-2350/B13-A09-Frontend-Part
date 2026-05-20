@@ -15,7 +15,7 @@ const categoryAccent = {
   Other:      { dot: "#94a3b8", label: "bg-slate-500/10 text-slate-400 ring-1 ring-slate-500/20" },
 };
 
-function TrendingCard({ idea, rank }) {
+function TrendingCard({ idea }) {
   const accent = categoryAccent[idea.category] || categoryAccent.Other;
 
   return (
@@ -23,7 +23,7 @@ function TrendingCard({ idea, rank }) {
 
      
       <div className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
-        <span className="text-white text-xs font-bold">#{rank}</span>
+        {/* <span className="text-white text-xs font-bold">#{rank}</span> */}
       </div>
 
       
