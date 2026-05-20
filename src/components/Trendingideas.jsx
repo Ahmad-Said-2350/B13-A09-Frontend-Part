@@ -22,9 +22,7 @@ function TrendingCard({ idea }) {
     <div className="group relative flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-slate-900/60 hover:border-slate-200 dark:hover:border-slate-700">
 
      
-      <div className="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
-        {/* <span className="text-white text-xs font-bold">#{rank}</span> */}
-      </div>
+      
 
       
       <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
