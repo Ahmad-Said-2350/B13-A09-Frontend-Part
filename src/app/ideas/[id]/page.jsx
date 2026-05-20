@@ -247,30 +247,28 @@ console.log(data)
           </h2>
 
           {session ? (
-            <form onSubmit={handleAddComment} className="flex gap-3 mb-8">
-              <img
-                src={session.user.image || "https://i.ibb.co/mJR9Qxc/user-avatar.png"}
-                alt={session.user.name}
-                className="w-8 h-8 rounded-full object-cover shrink-0 mt-1"
-              />
-              <div className="flex-1 flex gap-2">
-                <input
-                  type="text"
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                  placeholder="Write a comment..."
-                  required
-                  className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm"
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-4 py-2.5 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white text-sm font-medium rounded-xl transition-colors"
-                >
-                  {submitting ? "..." : "Post"}
-                </button>
-              </div>
-            </form>
+           <form onSubmit={handleAddComment} className="flex items-center gap-2 mb-8 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-3 py-2 focus-within:ring-2 focus-within:ring-violet-500">
+  <img
+    src={session.user.image || "https://i.ibb.co/mJR9Qxc/user-avatar.png"}
+    alt={session.user.name}
+    className="w-8 h-8 rounded-full object-cover shrink-0"
+  />
+  <input
+    type="text"
+    value={commentText}
+    onChange={(e) => setCommentText(e.target.value)}
+    placeholder="Write a comment..."
+    required
+    className="flex-1 bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none min-w-0"
+  />
+  <button
+    type="submit"
+    disabled={submitting}
+    className="shrink-0 px-3 py-1.5 bg-violet-600 hover:bg-violet-700 disabled:opacity-60 text-white text-xs font-semibold rounded-xl transition-colors"
+  >
+    {submitting ? "..." : "Post"}
+  </button>
+</form>
           ) : (
             <p className="text-sm text-slate-400 dark:text-slate-500 mb-8 text-center py-4 border border-dashed border-slate-200 dark:border-slate-700 rounded-xl">
               Please{" "}
