@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IdeaVault
+
+A community-driven platform where innovators share startup ideas, collect real feedback, and validate concepts together — before building anything.
+
+Built for clarity — real ideas, honest feedback, zero noise.
+
+---
+
+## Overview
+
+IdeaVault connects idea makers with a community of builders, investors, and thinkers. Post your startup concept with a problem statement and proposed solution, then let the community validate it through comments and discussions. Browse trending ideas, filter by category, and discover what the world is building next.
+
+**Live Site:** [https://b13-a09-frontend-part.vercel.app/](https://ideavault-client.vercel.app)
+
+---
+
+## What's Inside
+
+**Home** — Minimal hero banner with 3 slides, trending ideas section showing the top 6 most active concepts, How It Works steps, and Top Contributors leaderboard.
+
+**Ideas** — Full idea listing in a 3-column grid with search by title, filter by category, and optional date range filtering. Each card shows category, title, short description, author, and comment count.
+
+**Idea Details** — Complete idea profile with image, tags, target audience, estimated budget, problem statement, and proposed solution. Comment system is gated — only visible after login. Users can add, edit, and delete their own comments.
+
+**Add Idea** — Private form with all required fields: title, short description, detailed description, category, tags, image URL, estimated budget, target audience, problem statement, and proposed solution.
+
+**My Ideas** — Personal dashboard showing all ideas posted by the logged-in user, with edit (modal) and delete (confirmation modal) support.
+
+**My Interactions** — Activity feed showing all ideas the user has commented on, with comment text and timestamp.
+
+**Auth** — Email/password and Google login via BetterAuth. Registration with name, email, photo URL, and password validation. JWT stored client-side. Private routes redirect cleanly.
+
+**Profile** — Shows logged-in user's name, photo, and email. Update name and photo URL with live preview before saving.
+
+---
+
+## Tech Stack
+
+| | |
+|---|---|
+| Next.js  | App Router, server + client components |
+| BetterAuth | Email/password + Google OAuth + JWT |
+| MongoDB Atlas | Cloud database via native driver |
+| Express.js | REST API server |
+| Tailwind CSS | Utility-first styling |
+| DaisyUI | Component library |
+| React Toastify | Success and error notifications |
+| React Icons | Icon set throughout the UI |
+
+---
+
+## Color Palette
+
+| Role | Hex |
+|---|---|
+| Primary | `#7C3AED` Violet |
+| Accent | `#0891B2` Cyan |
+| Background Light | `#F8FAFC` Slate |
+| Background Dark | `#0F172A` Slate |
+
+---
+
+
 
 ## Getting Started
 
-First, run the development server:
+
+
 
 ```bash
+git clone https://github.com/your-username/ideavault-client
+cd ideavault-client
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file in the root:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+BETTER_AUTH_SECRET=your_secret_key
+BETTER_AUTH_URL=http://localhost:3000
+MONGODB_URI=your_mongodb_connection_string
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## NPM Packages Used
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+better-auth
+react-toastify
+react-icons
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Private routes redirect to `/login` if unauthenticated
+- Logged-in users are never redirected to login on page reload
+- JWT works for both email/password and Google login
+- Comment count updates dynamically on every card
+- Dark/light theme toggle persists across sessions
+- All routes work correctly after Vercel deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+**Server Repo:** [https://github.com/Ahmad-Said-2350/B13-A09-Back-end-Part](https://github.com/your-username/ideavault-server)
+
+---
+
+Crafted for innovators — minimal, honest, community-driven.
