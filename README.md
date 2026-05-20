@@ -69,7 +69,6 @@ IdeaVault connects idea makers with a community of builders, investors, and thin
 
 ```bash
 git clone https://github.com/Ahmad-Said-2350/B13-A09-Frontend-Part
-cd ideavault-client
 npm install
 npm run dev
 ```
