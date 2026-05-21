@@ -13,4 +13,6 @@ export default function Home() {
   <TopContributors></TopContributors>
     </div>
   );
+  
 }
+
