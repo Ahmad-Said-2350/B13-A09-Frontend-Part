@@ -26,11 +26,13 @@ function TrendingCard({ idea }) {
 
       
       <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0">
+        
         <img
           src={idea.imageURL || "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80"}
           alt={idea.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />
       </div>
 

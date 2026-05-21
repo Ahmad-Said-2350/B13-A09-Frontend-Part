@@ -58,7 +58,7 @@ const TopContributors = () => {
     <section className="py-16 md:py-24 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-10">
 
-        {/* Header */}
+      
         <div className="text-center mb-12 md:mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-violet-600 dark:text-violet-400">
             Community
@@ -71,14 +71,14 @@ const TopContributors = () => {
           </p>
         </div>
 
-        {/* Grid */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {contributors.map((c) => (
             <div
               key={c.rank}
               className="flex items-center gap-4 p-4 md:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-violet-200 dark:hover:border-violet-800 transition-all"
             >
-              {/* Rank */}
+              
               <span className="text-xs font-bold text-slate-400 dark:text-slate-600 w-4 shrink-0">
                 {c.badge || `#${c.rank}`}
               </span>
@@ -90,7 +90,7 @@ const TopContributors = () => {
                 className="w-10 h-10 rounded-full object-cover border-2 border-violet-100 dark:border-violet-900 shrink-0"
               />
 
-              {/* Info */}
+              
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
                   {c.name}
@@ -100,7 +100,7 @@ const TopContributors = () => {
                 </p>
               </div>
 
-              {/* Score */}
+            
               <div className="text-right shrink-0">
                 <p className="text-sm font-bold text-violet-600 dark:text-violet-400">
                   {c.ideas * 5 + c.comments}

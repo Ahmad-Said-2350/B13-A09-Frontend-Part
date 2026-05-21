@@ -80,7 +80,7 @@ const Navbar = () => {
             </svg>
           </button>
 
-          {/* Desktop Profile */}
+       
           {session ? (
             <div className="dropdown dropdown-end hidden sm:block">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-violet-400 hover:border-violet-600 transition-colors">
