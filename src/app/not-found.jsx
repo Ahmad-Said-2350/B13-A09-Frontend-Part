@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Error = () => {
     return (
-         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6">
+         <div className="min-h-screen  flex items-center justify-center px-6">
       <div className="max-w-md w-full text-center">
         <div className="relative mb-8">
           <h1 className="text-9xl font-black text-gray-200 select-none">404</h1>
