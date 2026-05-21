@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "Profile – IdeaVault",
-};
-
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
