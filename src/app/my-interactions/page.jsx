@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "My Interactions – IdeaVault",
+};
+
 "use client";
 
 import { useState, useEffect } from "react";

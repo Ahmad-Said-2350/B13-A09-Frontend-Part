@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "Register – IdeaVault",
+};
 "use client";
 
 import { useState } from "react";

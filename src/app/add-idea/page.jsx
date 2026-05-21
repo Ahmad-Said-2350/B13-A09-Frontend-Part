@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Post an Idea – IdeaVault",
+};
+
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

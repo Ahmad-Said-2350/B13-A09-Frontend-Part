@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "My Ideas – IdeaVault",
+};
+
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
