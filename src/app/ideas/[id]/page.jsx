@@ -1,11 +1,6 @@
-export async function generateMetadata({ params }) {
-  return {
-    title: `Idea Details – IdeaVault`,
-  };
-}
-
-
 "use client";
+
+
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
@@ -21,6 +16,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 const IdeaDetailsPage = () => {
     const { id } = useParams();
   const { data: session } = authClient.useSession();
+
 
   const [idea, setIdea] = useState(null);
   const [comments, setComments] = useState([]);
@@ -64,6 +60,16 @@ console.log(data)
     fetchIdea();
     fetchComments();
   }, [id]);
+
+
+useEffect(() => {
+  if (idea?.title) {
+    document.title = `${idea.title} – IdeaVault`;
+  }
+}, [idea]);
+
+
+
 
   const handleAddComment = async (e) => {
     e.preventDefault();

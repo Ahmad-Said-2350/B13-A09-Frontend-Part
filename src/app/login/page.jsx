@@ -1,9 +1,6 @@
-export const metadata = {
-  title: "Login – IdeaVault",
-};
-
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
@@ -11,6 +8,12 @@ import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
 
 const LoginPage = () => {
+
+// Dynamic Title: Route-based title change
+useEffect(() => {
+  document.title = "Login – IdeaVault";
+}, []);
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 

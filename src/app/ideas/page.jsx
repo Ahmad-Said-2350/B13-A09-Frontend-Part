@@ -1,10 +1,5 @@
-export const metadata = {
-  title: "All Ideas – IdeaVault",
-  description: "Browse all startup ideas",
-};
-
-
 "use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { VscComment } from "react-icons/vsc";
@@ -27,6 +22,12 @@ const categoryColors = {
 
 
 function IdeaCard({ idea }) {
+
+  useEffect(() => {
+  document.title = "All Ideas – IdeaVault";
+}, []);
+
+
   return (
     <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden flex flex-col hover:shadow-md hover:border-violet-200 dark:hover:border-violet-800 transition-all duration-200">
 

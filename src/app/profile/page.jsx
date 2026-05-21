@@ -3,7 +3,7 @@ export const metadata = {
 };
 
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
@@ -12,6 +12,13 @@ const ProfilePage = () => {
    const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user;
+
+
+ // Dynamic Title: Route-based title change 
+useEffect(() => {
+  document.title = "Profile – IdeaVault";
+}, []);
+
 
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);

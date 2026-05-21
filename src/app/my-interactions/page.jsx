@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "My Interactions – IdeaVault",
-};
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -16,6 +12,10 @@ const MyInteractionsPage = () => {
   const [interactions, setInteractions] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Dynamic Title: Route-based title change
+useEffect(() => {
+  document.title = "My Interactions – IdeaVault";
+}, []);
   
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");

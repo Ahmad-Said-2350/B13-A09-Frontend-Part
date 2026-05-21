@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "My Ideas – IdeaVault",
-};
-
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -31,6 +27,10 @@ const MyIdepage = () => {
   const [ideas, setIdeas] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Dynamic Title: Route-based title change
+  useEffect(() => {
+  document.title = "My Ideas – IdeaVault";
+}, []);
  
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);

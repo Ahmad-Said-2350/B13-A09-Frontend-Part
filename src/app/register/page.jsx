@@ -1,9 +1,6 @@
-export const metadata = {
-  title: "Register – IdeaVault",
-};
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signUp, signIn } from "@/lib/auth-client";
@@ -11,6 +8,13 @@ import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
 
 const RegisterPage = () => {
+
+// Dynamic Title: Route-based title change
+useEffect(() => {
+  document.title = "Register – IdeaVault";
+}, []);
+
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 

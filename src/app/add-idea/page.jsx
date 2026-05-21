@@ -1,9 +1,7 @@
-export const metadata = {
-  title: "Post an Idea – IdeaVault",
-};
-
 "use client";
-import { useState } from "react";
+
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
@@ -14,6 +12,12 @@ const categories = [
 ];
 
 const AddIdeaPage = () => {
+
+// Dynamic Title: Route-based title change
+useEffect(() => {
+  document.title = "Post an Idea – IdeaVault";
+}, []);
+
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const [loading, setLoading] = useState(false);
